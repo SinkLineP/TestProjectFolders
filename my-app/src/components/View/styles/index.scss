@@ -17,6 +17,11 @@ table, th, td {
   background-color: #27272A;
 }
 
-.table > .table-content > .table-structure-folder {
+.table .table-navbar .table-navbar-buttons {
+  padding-left: 22px;
+  text-align: left;
+}
+
+.table .table-content .table-structure-folder {
   background-color: #202124;
 }

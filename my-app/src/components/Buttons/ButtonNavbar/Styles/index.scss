@@ -1,0 +1,39 @@
+.btn-navbar {
+  background: none;
+  border: none;
+  color: #A1A1AA;
+  padding: 13px 2px 15px 2px;
+
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+
+  margin-right: 24px;
+}
+
+.btn-navbar:hover {
+  color: white;
+  border-bottom: 2px solid #FFFFFF;
+  padding-bottom: 13px;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.btn-navbar:active {
+  color: white;
+  border-bottom: 2px solid #FFFFFF;
+  padding-bottom: 13px;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.btn-navbar.btn-active {
+  color: white;
+  border-bottom: 2px solid #FFFFFF;
+  padding-bottom: 13px;
+  margin-bottom: 0;
+  height: 100%;
+}
