@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ButtonNavbar from "../Buttons/ButtonNavbar/ButtonNavbar";
 import "./styles/index.scss";
 import arrowDown from "./icons/arrowDown.svg";
@@ -8,14 +8,15 @@ import ShowContentProject from "./components/ShowContentProject/ShowContentProje
 interface ViewType {
   data: any;
   entity: any;
+  structure: any;
 }
 
-const View: React.FC<ViewType> = ({data, entity}) => {
+const View: React.FC<ViewType> = ({data, entity, structure}) => {
   const [currentBtn, setCurrentBtn] = useState<{id: string, class: string}>({
     id: "",
     class: "",
   });
-  const arrayEntityTemplate = {
+  const arrayEntityTemplate = [{
     equipmentCosts: null,
     estimatedProfit: null,
     machineOperatorSalary: null,
@@ -27,9 +28,10 @@ const View: React.FC<ViewType> = ({data, entity}) => {
     rowName: null,
     salary: null,
     supportCosts: null
-  };
+  }];
   const [showList, setShowList] = useState(false);
   const [showNameProject, setShowNameProject] = useState(false);
+
 
   return (
     <div className={"show-content"}>
@@ -71,7 +73,7 @@ const View: React.FC<ViewType> = ({data, entity}) => {
             </td>
             <td className={"td table-structure-folder"}>
               <div className={showNameProject ? "not-active" : "active"}>
-                <ShowContentProject object={data ? data : arrayEntityTemplate} />
+                <ShowContentProject object={data ? structure : arrayEntityTemplate} />
               </div>
             </td>
           </tr>

@@ -1,6 +1,6 @@
-import React, {createRef, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {createEntityAPI, createRowEntityAPI, getEntityIDAPI} from "./models/api";
+import {createEntityAPI, createRowEntityAPI, getStructureIDAPI} from "./models/api";
 import View from "./components/View/View";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     changed: [],
     current: {}
   })
-  const [structure, getStructure] = useState<void>();
+  const [structure, setStructure] = useState<any[]>([{id: 0}]);
   const [getStatus, setGetStatus] = useState(true);
 
   //создание сущности
@@ -24,15 +24,23 @@ function App() {
     createRowEntityAPI(entity.id).then(r => setData(r));
     setGetStatus(false);
   }
+
+  const [tree, setTree] = useState<any>();
+  const getStructure = (value: any[]) => {
+    return setTree(value);
+  }
+
   // получение структуры
   if (entity.id !== 0 && getStatus) {
-    getEntityIDAPI(entity.id).then(r => getStructure(r))
+    getStructureIDAPI(entity.id, getStructure).then(r => r);
     setGetStatus(false);
   }
 
+
+
   return (
     <div className="App">
-      <View data={data.current} entity={entity}/>
+        <View data={data} entity={entity} structure={tree}/>
     </div>
   );
 }

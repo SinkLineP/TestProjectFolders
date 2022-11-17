@@ -12,16 +12,17 @@ export const createEntityAPI = async () => {
     throw new Error("Server Error!");
   }
   return await response.json();
-}
-export const getEntityIDAPI = async (IDEntity: number) => {
-  axios.get(`http://185.244.172.108:8081/v1/outlay-rows/entity/${IDEntity}/row/list`, { headers: { Accept: "*/*" } })
+}//создание сущности
+export const getStructureIDAPI = async (IDEntity: number, getValue: any) => {
+  axios.get(`http://185.244.172.108:8081/v1/outlay-rows/entity/22616/row/list`, { headers: { Accept: "*/*" } })
     .then(response => {
+      getValue(response.data);
       return response.data;
     })
     .catch((error) => {
       console.log('error ' + error);
     });
-}
+}// получение структуры
 export const createRowEntityAPI = async (IDEntity: number) => {
   const response = await fetch(`http://185.244.172.108:8081/v1/outlay-rows/entity/${IDEntity}/row/create`, {
     method: "POST",
@@ -47,4 +48,4 @@ export const createRowEntityAPI = async (IDEntity: number) => {
     throw new Error("Server Error!");
   }
   return await response.json();
-}
+}//создание строки у определенной сущности
