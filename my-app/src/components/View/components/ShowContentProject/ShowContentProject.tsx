@@ -19,9 +19,9 @@ const ShowContentProject: React.FC<ShowContentType> = ({array}) => {
           <td className={"estimatedProfit"}>Сметная прибыль</td>
         </tr>
         {
-          array.map((item: any) => {
+          array.map((item: any, index: number) => {
             return (
-              <tr className={"project-input"}>
+              <tr key={index} className={"project-input"}>
                 <td>{item.level}</td>
                 <td>{item.rowName}</td>
                 <td>{item.salary}</td>

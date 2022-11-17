@@ -25,12 +25,12 @@
 
       & .flex-container {
         display: flex;
-        height: 44px;
+        height: 60px;
         gap: 5px;
         width: 100%;
 
         & .item1 {
-          padding-top: 0.5rem;
+          padding-top: 0.9rem;
           width: 92%;
 
           & .name-project {
@@ -54,7 +54,7 @@
         }
 
         & .item2 {
-          padding-top: 0.7rem;
+          padding-top: 1rem;
           width: 8%;
 
           & .btn-open {
@@ -80,9 +80,37 @@
     }
     & .table-name-project {
       width: 85%;
+      color: white;
+      font-family: 'Roboto', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      padding: 0 0 0 10px;
+      margin: 0;
     }
   }
   & .table-content {
+    & .table-list-projects {
+      vertical-align: top;
+
+      & .project-name-in-list {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: white;
+        background: none;
+        border: none;
+        text-align: left;
+        margin-top: 5px;
+      }
+
+      & .project-name-in-list:hover {
+        cursor: pointer;
+        background-color: #A1A1AA;
+      }
+    }
     & .table-structure-folder {
       height: 100%;
       background-color: #202124;
@@ -90,3 +118,11 @@
     }
   }
 }
+
+.active {
+  display: block;
+};
+
+.not-active {
+  display: none;
+};

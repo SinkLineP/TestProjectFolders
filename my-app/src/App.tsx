@@ -8,7 +8,7 @@ function App() {
     id: 0,
     rowName: "",
   });
-  const [entity, setEntity] = useState(null);
+  const [entity, setEntity] = useState([]);
   const [getStatus, setgetStatus] = useState(true);
 
   //создание сущности
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <View entity={entity}/>
+      <View entity={entity} dataRowName={data.rowName}/>
     </div>
   );
 }
