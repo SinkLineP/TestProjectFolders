@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import ButtonNavbar from "../Buttons/ButtonNavbar/ButtonNavbar";
 import "./styles/index.scss";
-import {current} from "@reduxjs/toolkit";
 
 
 function View() {
@@ -9,7 +8,6 @@ function View() {
     id: "",
     class: "",
   });
-  console.log(currentBtn);
 
   return (
     <div className={"show-content"}>

@@ -9,8 +9,7 @@ interface ButtonNavbarType {
 }
 
 const ButtonNavbar: React.FC<ButtonNavbarType> = ({idBtn, setCurrentBtn, content, activeClass}) => {
-  let classBtn = "btn-navbar";
-  console.log(activeClass);
+  const classBtn = "btn-navbar";
   return (
     <button id={idBtn} className={activeClass !== "" ? activeClass : classBtn} onClick={() => setCurrentBtn({
       id: idBtn,
