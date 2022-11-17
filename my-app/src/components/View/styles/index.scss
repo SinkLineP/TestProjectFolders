@@ -1,11 +1,3 @@
-//.show-content {
-//
-//}
-//
-//.show-content > .table {
-//
-//}
-
 table, tr, th, td {
   border: 1px solid #414144;
   border-collapse: collapse;
@@ -18,13 +10,12 @@ table, tr, th, td {
 
   & .table-navbar {
     height: 44px;
+    padding-left: 22px;
 
     &.table-navbar-buttons {
-      padding-left: 22px;
       text-align: left;
     }
   }
-
   & .table-titles {
     height: 44px;
     width: 100%;
@@ -91,16 +82,7 @@ table, tr, th, td {
       width: 85%;
     }
   }
-
   & .table-content .table-structure-folder {
     background-color: #202124;
   }
-}
-
-
-
-
-
-.table .table-content {
-
 }
