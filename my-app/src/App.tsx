@@ -1,6 +1,6 @@
 import React, {createRef, useEffect, useRef, useState} from 'react';
 import './App.scss';
-import {createEntityAPI, getEntityIDAPI} from "./models/api";
+import {createEntityAPI, createRowEntityAPI, getEntityIDAPI} from "./models/api";
 import View from "./components/View/View";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     rowName: "",
   });
   const [entity, setEntity] = useState(null);
-  const [createEntityStatus, setCreateEntityStatus] = useState(true);
+  const [getStatus, setgetStatus] = useState(true);
 
   //создание сущности
   useEffect(() => {
@@ -17,13 +17,13 @@ function App() {
   }, [])
 
   // получение сущности
-  if (data.id !== 0 && createEntityStatus) {
+  if (data.id !== 0 && getStatus) {
     getEntityIDAPI(data.id).then(r => setEntity(r));
-    setCreateEntityStatus(false);
+    setgetStatus(false);
   }
 
-
-  if (entity !== null) {
+  if (data.id !== 0 && entity !== null) {
+    createRowEntityAPI(data.id).then(r => console.log(r));
     console.log(entity);
   }
 

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ButtonNavbar from "../Buttons/ButtonNavbar/ButtonNavbar";
 import "./styles/index.scss";
+import arrowDown from "./icons/arrowDown.svg";
 
 
 function View() {
@@ -22,7 +23,19 @@ function View() {
             </td>
           </tr>
           <tr className={"table-titles"}>
-            <td className={"table-name-or-sorting"}></td>
+            <td className={"table-name-or-sorting"}>
+              <div className="flex-container">
+                <div className="item1">
+                  <p className={"name-project"}>Название проекта</p>
+                  <p className={"abbrev"}>Аббревиатура</p>
+                </div>
+                <div className="item2">
+                  <button className={"btn-open"}>
+                    <img src={arrowDown} alt={"arrow-down"}/>
+                  </button>
+                </div>
+              </div>
+            </td>
             <td className={"table-name-project"}></td>
           </tr>
           <tr className={"table-content"}>
