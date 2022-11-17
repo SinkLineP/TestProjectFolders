@@ -24,12 +24,11 @@ function App() {
 
   if (data.id !== 0 && entity !== null) {
     createRowEntityAPI(data.id).then(r => console.log(r));
-    console.log(entity);
   }
 
   return (
     <div className="App">
-      <View />
+      <View entity={entity}/>
     </div>
   );
 }

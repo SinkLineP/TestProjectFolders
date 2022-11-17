@@ -4,16 +4,18 @@ import "./styles/index.scss";
 import arrowDown from "./icons/arrowDown.svg";
 import ShowContentProject from "./components/ShowContentProject/ShowContentProject";
 
+interface ViewType {
+  entity: any,
+}
 
-function View() {
+const View: React.FC<ViewType> = (entity: any) => {
   const [currentBtn, setCurrentBtn] = useState<{id: string, class: string}>({
     id: "",
     class: "",
   });
-  const [arrayEntity, setArrayEntity] = useState([]);
   const arrayEntityTemplate = [{
     level: 0,
-    rowName: "",
+    rowName: "empty",
     salary: 0,
     equipmentCosts: 0,
     overheads: 0,
@@ -51,7 +53,7 @@ function View() {
           <tr className={"table-content"}>
             <td className={"td table-list-projects"}></td>
             <td className={"td table-structure-folder"}>
-              <ShowContentProject array={arrayEntityTemplate} />
+              <ShowContentProject array={entity ? arrayEntityTemplate : entity} />
             </td>
           </tr>
         </tbody>

@@ -2,7 +2,7 @@ import React from "react";
 import "./Styles/index.scss";
 
 interface ShowContentType {
-  array: any;
+  array: any | null;
 }
 
 const ShowContentProject: React.FC<ShowContentType> = ({array}) => {
