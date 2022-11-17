@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import ButtonNavbar from "../Buttons/ButtonNavbar/ButtonNavbar";
 import "./styles/index.scss";
 import arrowDown from "./icons/arrowDown.svg";
+import arrowUp from "./icons/arrowUp.svg";
 import ShowContentProject from "./components/ShowContentProject/ShowContentProject";
 
 interface ViewType {
@@ -46,7 +47,7 @@ const View: React.FC<ViewType> = ({dataRowName, entity}) => {
                 </div>
                 <div className="item2">
                   <button className={"btn-open"} onClick={() => setShowList(!showList)}>
-                    <img src={arrowDown} alt={"arrow-down"}/>
+                    <img src={showList ? arrowDown : arrowUp} alt={"arrow-down"}/>
                   </button>
                 </div>
               </div>
