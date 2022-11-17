@@ -1,12 +1,12 @@
-table, tr, th, td {
-  border: 1px solid #414144;
-  border-collapse: collapse;
-}
-
 .table {
   width: 100%;
   min-height: 100vh;
   background-color: #27272A;
+  border-collapse: collapse;
+
+  & .td {
+    border: 1px solid #414144;
+  }
 
   & .table-navbar {
     height: 44px;
@@ -82,7 +82,11 @@ table, tr, th, td {
       width: 85%;
     }
   }
-  & .table-content .table-structure-folder {
-    background-color: #202124;
+  & .table-content {
+    & .table-structure-folder {
+      height: 100%;
+      background-color: #202124;
+      vertical-align: top;
+    }
   }
 }

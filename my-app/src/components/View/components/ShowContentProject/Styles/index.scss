@@ -1,0 +1,19 @@
+.table-show-content {
+  width: 100%;
+  border-collapse: unset;
+  margin: 0;
+  padding: 0;
+
+  & tbody tr td {
+    color: #A1A1AA;
+    height: 42px;
+  }
+
+  & tr {
+    border-bottom: 1px solid #414144;
+  }
+
+  & .project-input td {
+    color: white;
+  }
+}
