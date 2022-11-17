@@ -6,23 +6,28 @@ import arrowUp from "./icons/arrowUp.svg";
 import ShowContentProject from "./components/ShowContentProject/ShowContentProject";
 
 interface ViewType {
-  dataRowName: string;
-  entity: Array<any>;
+  data: any;
+  entity: any;
 }
 
-const View: React.FC<ViewType> = ({dataRowName, entity}) => {
+const View: React.FC<ViewType> = ({data, entity}) => {
   const [currentBtn, setCurrentBtn] = useState<{id: string, class: string}>({
     id: "",
     class: "",
   });
-  const arrayEntityTemplate = [{
-    level: 0,
-    rowName: "empty",
-    salary: 0,
-    equipmentCosts: 0,
-    overheads: 0,
-    estimatedProfit: 0
-  }];
+  const arrayEntityTemplate = {
+    equipmentCosts: null,
+    estimatedProfit: null,
+    machineOperatorSalary: null,
+    mainCosts: null,
+    materials: null,
+    mimExploitation: null,
+    overheads: null,
+    parentId: null,
+    rowName: null,
+    salary: null,
+    supportCosts: null
+  };
   const [showList, setShowList] = useState(false);
   const [showNameProject, setShowNameProject] = useState(false);
 
@@ -54,19 +59,19 @@ const View: React.FC<ViewType> = ({dataRowName, entity}) => {
             </td>
             <td className={"td table-name-project"}>
               <p className={showNameProject ? "not-active" : "active"}>
-                {dataRowName}
+                {entity.rowName}
               </p>
             </td>
           </tr>
           <tr className={"table-content"}>
             <td className={"td table-list-projects"}>
               <div className={showList ? "not-active" : "active"}>
-                <button className={"project-name-in-list"} onClick={() => setShowNameProject(!showNameProject)}>Icon {dataRowName}</button>
+                <button className={"project-name-in-list"} onClick={() => setShowNameProject(!showNameProject)}>Icon {entity.rowName}</button>
               </div>
             </td>
             <td className={"td table-structure-folder"}>
               <div className={showNameProject ? "not-active" : "active"}>
-                <ShowContentProject array={entity ? arrayEntityTemplate : entity} />
+                <ShowContentProject object={data ? data : arrayEntityTemplate} />
               </div>
             </td>
           </tr>

@@ -2,10 +2,11 @@ import React from "react";
 import "./Styles/index.scss";
 
 interface ShowContentType {
-  array: any | null;
+  object: any | null;
 }
 
-const ShowContentProject: React.FC<ShowContentType> = ({array}) => {
+const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
+
 
   return (
     <table className={"table-show-content"}>
@@ -18,20 +19,14 @@ const ShowContentProject: React.FC<ShowContentType> = ({array}) => {
           <td className={"overheads"}>Накладные расходы</td>
           <td className={"estimatedProfit"}>Сметная прибыль</td>
         </tr>
-        {
-          array.map((item: any, index: number) => {
-            return (
-              <tr key={index} className={"project-input"}>
-                <td>{item.level}</td>
-                <td>{item.rowName}</td>
-                <td>{item.salary}</td>
-                <td>{item.equipmentCosts}</td>
-                <td>{item.overheads}</td>
-                <td>{item.estimatedProfit}</td>
-              </tr>
-            )
-          })
-        }
+          <tr className={"project-input"}>
+            <td>{object.level === null ? 1 : object.level}</td>
+            <td>{object.rowName === null ? (<input className={"input-edit"} placeholder={"Введите наименование.."} type={"string"} />) : object.rowName}</td>
+            <td>{object.salary === null ? (<input className={"input-edit"} placeholder={"Введите основую з/п.."} type={"string"} />) : object.salary}</td>
+            <td>{object.equipmentCosts === null ? (<input className={"input-edit"} placeholder={"Введите кол-во оборудования.."} type={"string"} />) : object.equipmentCosts}</td>
+            <td>{object.overheads === null ? (<input className={"input-edit"} placeholder={"Введите накладные расходы.."} type={"string"} />) : object.overheads}</td>
+            <td>{object.estimatedProfit === null ? (<input className={"input-edit"} placeholder={"Введите сметную прибыль.."} type={"string"} />) : object.estimatedProfit}</td>
+          </tr>
       </tbody>
     </table>
   )

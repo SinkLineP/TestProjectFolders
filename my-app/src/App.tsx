@@ -4,31 +4,35 @@ import {createEntityAPI, createRowEntityAPI, getEntityIDAPI} from "./models/api"
 import View from "./components/View/View";
 
 function App() {
-  const [data, setData] = useState<{id: number, rowName: string}>({
+  const [entity, setEntity] = useState<{id: number, rowName: string}>({
     id: 0,
     rowName: "",
   });
-  const [entity, setEntity] = useState([]);
-  const [getStatus, setgetStatus] = useState(true);
+  const [data, setData] = useState<{changed: any, current: any}>({
+    changed: [],
+    current: {}
+  })
+  const [structure, getStructure] = useState<void>();
+  const [getStatus, setGetStatus] = useState(true);
 
   //создание сущности
   useEffect(() => {
-    createEntityAPI().then(r => setData(r));
+    createEntityAPI().then(r => setEntity(r));
   }, [])
-
-  // получение сущности
-  if (data.id !== 0 && getStatus) {
-    getEntityIDAPI(data.id).then(r => setEntity(r));
-    setgetStatus(false);
+  //создание строки у определенной сущности
+  if (entity.id !== 0 && getStatus) {
+    createRowEntityAPI(entity.id).then(r => setData(r));
+    setGetStatus(false);
   }
-
-  if (data.id !== 0 && entity !== null) {
-    createRowEntityAPI(data.id).then(r => console.log(r));
+  // получение структуры
+  if (entity.id !== 0 && getStatus) {
+    getEntityIDAPI(entity.id).then(r => getStructure(r))
+    setGetStatus(false);
   }
 
   return (
     <div className="App">
-      <View entity={entity} dataRowName={data.rowName}/>
+      <View data={data.current} entity={entity}/>
     </div>
   );
 }

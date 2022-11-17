@@ -1,12 +1,12 @@
 .table-show-content {
-  width: 100%;
+  width: 98%;
   border-collapse: unset;
-  margin: 0;
+  margin: 0 auto 0 auto;
   padding: 0;
 
   & tbody tr td {
     color: #A1A1AA;
-    height: 42px;
+    height: 50px;
   }
 
   & tr {
@@ -15,5 +15,16 @@
 
   & .project-input td {
     color: white;
+
+    & .input-edit {
+      background: none;
+      border: 1px solid #414144;
+      color: #414144;
+      border-radius: 6px;
+      width: 90%;
+      height: 36px;
+      padding-left: 10px;
+    }
   }
 }
+
