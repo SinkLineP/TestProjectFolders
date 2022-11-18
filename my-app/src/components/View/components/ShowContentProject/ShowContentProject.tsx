@@ -36,18 +36,22 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                 return (
                   <>
                     {/*Level 1*/}
-                    <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
+                    <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} />
                     {
                       objectItem.child.map((childItem: any, indexChild: number) => {
                         if (childItem.child !== null) {
                           return (
                             <>
-                              <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                              {/*Level 2*/}
+                              <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} />
                               {
                                 childItem.child.map((FileItem: any, indexFile: number) => {
                                   if (FileItem.child !== null) {
                                     return (
-                                      <LineData IterationItem={FileItem.id} ImgSrc={FileImage} ImageClassLevel={"icon-level into-child"} ImageAlt={"File"} />
+                                      <>
+                                        {/*<File>*/}
+                                        <LineData key={FileItem.id} IterationItem={FileItem} ImgSrc={FileImage} DivClassLevel={"into-child"} ImageClassLevel={"icon-level"} ImageAlt={"File"} Level={3} />
+                                      </>
                                     )
                                   }
                                 })
@@ -56,7 +60,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                           )
                         } else {
                           return (
-                            <LineData key={indexChild} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                            <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} />
                           )
                         }
                       })
@@ -65,7 +69,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                 )
               } else {
                 return (
-                  <LineData key={index} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
+                  <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} />
                 )
               }
             }

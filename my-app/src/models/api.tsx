@@ -14,7 +14,7 @@ export const createEntityAPI = async () => {
   return await response.json();
 }//создание сущности
 export const getStructureIDAPI = async (IDEntity: number, getValue: any) => {
-  axios.get(`http://185.244.172.108:8081/v1/outlay-rows/entity/3/row/list`, { headers: { Accept: "*/*" } })
+  axios.get(`http://185.244.172.108:8081/v1/outlay-rows/entity/1/row/list`, { headers: { Accept: "*/*" } })
     .then(response => {
       getValue(response.data);
       return response.data;

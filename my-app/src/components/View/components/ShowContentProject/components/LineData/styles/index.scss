@@ -1,0 +1,24 @@
+.icon-hover {
+  display: inline-block;
+}
+
+.hide-icons {
+  display: none;
+}
+
+.icon-hover:hover .hide-icons {
+  display: block;
+}
+
+.button-folder {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.holder-buttons > div {
+  background-color: #414144;
+  width: 65%;
+  padding: 4px 0 4px 0;
+  border-radius: 5px;
+}
