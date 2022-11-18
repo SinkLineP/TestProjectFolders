@@ -7,13 +7,15 @@ import LineData from "./components/LineData/LineData";
 import EditorDataLine from "./components/EditorDataLine/EditorDataLine";
 interface ShowContentType {
   object: any[];
+  IDEntity: number;
+  setTree: any;
 }
 
-const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
+const ShowContentProject: React.FC<ShowContentType> = ({object, IDEntity, setTree}) => {
 
-  const edit: any = (obj: any) => {
+  const edit: any = (obj: any, id: number) => {
     return (
-      <EditorDataLine item={obj} ImageClassLevel={"icon-level"} ImgSrc={FolderLevelOne} ImageAlt={"Folder Level 1"} />
+      <EditorDataLine setTree={setTree} IDEntity={id} item={obj} ImageClassLevel={"icon-level"} ImgSrc={FolderLevelOne} ImageAlt={"Folder Level 1"} />
     )
   }
 
@@ -31,26 +33,27 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
       <>
         {
           object.length !== 0 ? object.map((objectItem: any, index: number) => {
+            console.log(objectItem)
             if (objectItem !== undefined && objectItem.id !== null) {
               if (objectItem.child[0] !== null) {
                 return (
                   <>
                     {/*Level 1*/}
-                    <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} />
+                    <LineData setTree={setTree} key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} idRow={objectItem.id} IDEntity={IDEntity}/>
                     {
                       objectItem.child.map((childItem: any, indexChild: number) => {
                         if (childItem.child !== null) {
                           return (
                             <>
                               {/*Level 2*/}
-                              <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} />
+                              <LineData setTree={setTree} key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} idRow={childItem.id} IDEntity={IDEntity}/>
                               {
                                 childItem.child.map((FileItem: any, indexFile: number) => {
                                   if (FileItem.child !== null) {
                                     return (
                                       <>
                                         {/*<File>*/}
-                                        <LineData key={FileItem.id} IterationItem={FileItem} ImgSrc={FileImage} DivClassLevel={"into-child"} ImageClassLevel={"icon-level"} ImageAlt={"File"} Level={3} />
+                                        <LineData setTree={setTree} key={FileItem.id} IterationItem={FileItem} ImgSrc={FileImage} DivClassLevel={"into-child"} ImageClassLevel={"icon-level"} ImageAlt={"File"} Level={3} idRow={FileItem.id} IDEntity={IDEntity}/>
                                       </>
                                     )
                                   }
@@ -60,7 +63,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                           )
                         } else {
                           return (
-                            <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} />
+                            <LineData setTree={setTree} key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} DivClassLevel={"into"} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 2"} Level={2} idRow={childItem.id} IDEntity={IDEntity}/>
                           )
                         }
                       })
@@ -69,11 +72,11 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                 )
               } else {
                 return (
-                  <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} />
+                  <LineData setTree={setTree} key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} Level={1} idRow={objectItem.id} IDEntity={IDEntity}/>
                 )
               }
             }
-          }) : edit(object)
+          }) : edit(object, IDEntity)
           }
       </>
       </tbody>

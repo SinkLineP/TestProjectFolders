@@ -5,6 +5,7 @@ import FolderLevelTwo from "../../icons/folder_two.svg";
 import FileImage from "../../icons/File.svg";
 import DeleteIcon from "../../icons/delete.svg"
 import "./styles/index.scss";
+import {deleteRowFromEntityAPI} from "../../../../../../models/api";
 
 
 interface LineDataType {
@@ -15,10 +16,12 @@ interface LineDataType {
   ImageClassLevel: string;
   ImageAlt: string;
   Level: number;
+  idRow: number;
+  IDEntity: number;
+  setTree: any;
 }
 
-const LineData: React.FC<LineDataType> = ({keyIndex, IterationItem, ImgSrc, DivClassLevel, ImageClassLevel, ImageAlt, Level}) => {
-  const LevelOne = [FolderLevelOne, FolderLevelTwo, FileImage, DeleteIcon];
+const LineData: React.FC<LineDataType> = ({setTree, IDEntity, keyIndex, IterationItem, ImgSrc, DivClassLevel, ImageClassLevel, ImageAlt, Level, idRow}) => {
   const LevelTwo = [FolderLevelTwo, FileImage, DeleteIcon];
   const LevelThree = [FileImage, DeleteIcon];
 
@@ -28,11 +31,14 @@ const LineData: React.FC<LineDataType> = ({keyIndex, IterationItem, ImgSrc, DivC
         <div className={DivClassLevel}>
           <>
             {
-              Level === 1 ? LevelOne.map((item) => {
-                return (
-                  <button className={"button-folder"}><img className={ImageClassLevel} src={item} alt={"item"} /></button>
-                )
-              }) : ""
+              Level === 1 ? (
+                  <>
+                    <button className={"button-folder"}><img className={ImageClassLevel} src={FolderLevelOne} alt={"item"} /></button>
+                    <button className={"button-folder"}><img className={ImageClassLevel} src={FolderLevelTwo} alt={"item"} /></button>
+                    <button className={"button-folder"}><img className={ImageClassLevel} src={FileImage} alt={"item"} /></button>
+                    <button className={"button-folder"} onClick={() => deleteRowFromEntityAPI(IDEntity, idRow, setTree)}><img className={ImageClassLevel} src={DeleteIcon} alt={"item"} /></button>
+                  </>
+                ) : ""
             }
           </>
           <>

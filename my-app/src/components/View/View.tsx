@@ -9,9 +9,10 @@ interface ViewType {
   data: any;
   entity: any;
   structure: any;
+  setTree: any;
 }
 
-const View: React.FC<ViewType> = ({data, entity, structure}) => {
+const View: React.FC<ViewType> = ({data, entity, structure, setTree}) => {
   const [currentBtn, setCurrentBtn] = useState<{id: string, class: string}>({
     id: "",
     class: "",
@@ -32,11 +33,17 @@ const View: React.FC<ViewType> = ({data, entity, structure}) => {
   const [showList, setShowList] = useState(false);
   const [showNameProject, setShowNameProject] = useState(false);
 
+  let entityID: number = 0;
 
-  return (
-    <div className={"show-content"}>
-      <table className={"table"}>
-        <tbody>
+  if (entity.id !== 0) {
+    entityID = entity.id;
+  }
+
+  // if (entity.id !== 0) {
+    return (
+      <div className={"show-content"}>
+        <table className={"table"}>
+          <tbody>
           <tr className={"table-navbar"}>
             <td className={"td table-navbar-buttons"} colSpan={2}>
               <ButtonNavbar idBtn={"menu"} content={"Menu"} setCurrentBtn={setCurrentBtn} activeClass={currentBtn.id === "menu" ? currentBtn.class + " btn-active" : ""}/>
@@ -73,14 +80,16 @@ const View: React.FC<ViewType> = ({data, entity, structure}) => {
             </td>
             <td className={"td table-structure-folder"}>
               <div className={showNameProject ? "not-active" : "active"}>
-                <ShowContentProject object={data ? structure : arrayEntityTemplate} />
+                <ShowContentProject object={data ? structure : arrayEntityTemplate} IDEntity={entityID} setTree={setTree}/>
               </div>
             </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-  )
+          </tbody>
+        </table>
+      </div>
+    )
+  // }
+
 }
 
 export default View;

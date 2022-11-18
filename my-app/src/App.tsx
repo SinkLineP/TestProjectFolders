@@ -18,11 +18,9 @@ function App() {
   useEffect(() => {
     createEntityAPI().then(r => setEntity(r));
   }, [])
-  //создание строки у определенной сущности
-  if (entity.id !== 0 && getStatus) {
-    createRowEntityAPI(entity.id).then(r => setData(r));
-    setGetStatus(false);
-  }
+
+
+
 
   const [tree, setTree] = useState<any>();
   const valueItem: any[] = [{
@@ -54,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-        <View data={data} entity={entity} structure={tree === undefined ? valueItem : tree}/>
+        <View data={data} entity={entity} structure={tree === undefined ? valueItem : tree} setTree={setTree}/>
     </div>
   );
 }
