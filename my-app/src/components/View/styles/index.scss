@@ -7,7 +7,6 @@
   & .td {
     border: 1px solid #414144;
   }
-
   & .table-navbar {
     height: 44px;
     padding-left: 22px;
@@ -28,6 +27,7 @@
         height: 60px;
         gap: 5px;
         width: 100%;
+
 
         & .item1 {
           padding-top: 0.9rem;
@@ -122,7 +122,6 @@
 .active {
   display: block;
 };
-
 .not-active {
   display: none;
 };

@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import "./Styles/index.scss";
-
+import FolderLevelOne from "./icons/folder_one.svg";
+import FolderLevelTwo from "./icons/folder_two.svg";
+import FileImage from "./icons/File.svg";
+import LineData from "./components/LineData/LineData";
 interface ShowContentType {
   object: any[];
 }
@@ -11,7 +14,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
   return (
     <table className={"table-show-content"}>
       <tbody>
-      <tr className={"table-projects"}>
+      <tr className={"table-head"}>
         <td className={"level"}>Уровень</td>
         <td className={"rowName"}>Наименование работ</td>
         <td className={"salary"}>Основная з/п</td>
@@ -26,42 +29,37 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
               if (objectItem.child[0] !== null) {
                 return (
                   <>
-                    <tr key={index} className={"project-input"}>
-                      <td>level</td>
-                      <td>{objectItem.rowName === null ? (<input className={"input-edit"} placeholder={"Введите наименование.."} type={"string"}/>) : objectItem.rowName}</td>
-                      <td>{objectItem.salary === null ? (<input className={"input-edit"} placeholder={"Введите основую з/п.."} type={"string"}/>) : objectItem.salary}</td>
-                      <td>{objectItem.equipmentCosts === null ? (<input className={"input-edit"} placeholder={"Введите кол-во оборудования.."} type={"string"}/>) : objectItem.equipmentCosts}</td>
-                      <td>{objectItem.overheads === null ? (<input className={"input-edit"} placeholder={"Введите накладные расходы.."} type={"string"}/>) : objectItem.overheads}</td>
-                      <td>{objectItem.estimatedProfit === null ? (<input className={"input-edit"} placeholder={"Введите сметную прибыль.."} type={"string"}/>) : objectItem.estimatedProfit}</td>
-                    </tr>
+                    {/*Level 1*/}
+                    <LineData key={index} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
                     {
                       objectItem.child.map((childItem: any, indexChild: number) => {
-                        return (
-                          <tr key={indexChild} className={"project-input"}>
-                            <td>level 2</td>
-                            <td>{childItem.rowName === null ? (<input className={"input-edit"} placeholder={"Введите наименование.."} type={"string"}/>) : childItem.rowName}</td>
-                            <td>{childItem.salary === null ? (<input className={"input-edit"} placeholder={"Введите основую з/п.."} type={"string"}/>) : childItem.salary}</td>
-                            <td>{childItem.equipmentCosts === null ? (<input className={"input-edit"} placeholder={"Введите кол-во оборудования.."} type={"string"}/>) : childItem.equipmentCosts}</td>
-                            <td>{childItem.overheads === null ? (<input className={"input-edit"} placeholder={"Введите накладные расходы.."} type={"string"}/>) : childItem.overheads}</td>
-                            <td>{childItem.estimatedProfit === null ? (<input className={"input-edit"} placeholder={"Введите сметную прибыль.."} type={"string"}/>) : childItem.estimatedProfit}</td>
-                          </tr>
-                        )
+                        if (childItem.child !== null) {
+                          return (
+                            <>
+                              <LineData key={indexChild} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                              {
+                                childItem.child.map((FileItem: any, indexFile: number) => {
+                                  if (FileItem.child !== null) {
+                                    return (
+                                      <LineData key={indexFile} IterationItem={FileItem} ImgSrc={FileImage} ImageClassLevel={"icon-level into-child"} ImageAlt={"File"} />
+                                    )
+                                  }
+                                })
+                              }
+                            </>
+                          )
+                        } else {
+                          return (
+                            <LineData key={indexChild + 1} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                          )
+                        }
                       })
                     }
                   </>
                 )
               } else {
                 return (
-                  <>
-                    <tr key={index + 1} className={"project-input"}>
-                      <td>level</td>
-                      <td>{objectItem.rowName === null ? (<input className={"input-edit"} placeholder={"Введите наименование.."} type={"string"}/>) : objectItem.rowName}</td>
-                      <td>{objectItem.salary === null ? (<input className={"input-edit"} placeholder={"Введите основую з/п.."} type={"string"}/>) : objectItem.salary}</td>
-                      <td>{objectItem.equipmentCosts === null ? (<input className={"input-edit"} placeholder={"Введите кол-во оборудования.."} type={"string"}/>) : objectItem.equipmentCosts}</td>
-                      <td>{objectItem.overheads === null ? (<input className={"input-edit"} placeholder={"Введите накладные расходы.."} type={"string"}/>) : objectItem.overheads}</td>
-                      <td>{objectItem.estimatedProfit === null ? (<input className={"input-edit"} placeholder={"Введите сметную прибыль.."} type={"string"}/>) : objectItem.estimatedProfit}</td>
-                    </tr>
-                  </>
+                  <LineData key={index + 1} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
                 )
               }
             }

@@ -4,17 +4,19 @@
   margin: 0 auto 0 auto;
   padding: 0;
 
+  & .table-head > * {
+    padding-left: 20px;
+  }
   & tbody tr td {
     color: #A1A1AA;
     height: 50px;
   }
-
   & tr {
     border-bottom: 1px solid #414144;
   }
-
   & .project-input td {
     color: white;
+    padding-left: 20px;
 
     & .input-edit {
       background: none;
@@ -26,5 +28,16 @@
       padding-left: 10px;
     }
   }
+}
+
+.icon-level {
+  width: 1rem;
+  height: auto;
+}
+.icon-level.into {
+  padding-left: 10px;
+}
+.icon-level.into-child {
+  padding-left: 30px;
 }
 
