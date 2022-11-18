@@ -12,7 +12,6 @@ function App() {
     changed: [],
     current: {}
   })
-  const [structure, setStructure] = useState<any[]>([{id: 0}]);
   const [getStatus, setGetStatus] = useState(true);
 
   //создание сущности
@@ -26,7 +25,24 @@ function App() {
   }
 
   const [tree, setTree] = useState<any>();
+  const valueItem: any[] = [{
+    id: null,
+    rowName: null,
+    total: null,
+    salary: null,
+    mimExploitation: null,
+    machineOperatorSalary: null,
+    materials: null,
+    mainCosts: null,
+    supportCosts: null,
+    equipmentCosts: null,
+    overheads: null,
+    estimatedProfit: null,
+    child: [null]
+  }];
+
   const getStructure = (value: any[]) => {
+    // console.log(value);
     return setTree(value);
   }
 
@@ -36,11 +52,9 @@ function App() {
     setGetStatus(false);
   }
 
-
-
   return (
     <div className="App">
-        <View data={data} entity={entity} structure={tree}/>
+        <View data={data} entity={entity} structure={tree === undefined ? valueItem : tree}/>
     </div>
   );
 }

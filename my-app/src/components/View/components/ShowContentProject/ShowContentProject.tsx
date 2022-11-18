@@ -1,15 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Styles/index.scss";
 import FolderLevelOne from "./icons/folder_one.svg";
 import FolderLevelTwo from "./icons/folder_two.svg";
 import FileImage from "./icons/File.svg";
 import LineData from "./components/LineData/LineData";
+import EditorDataLine from "./components/EditorDataLine/EditorDataLine";
 interface ShowContentType {
   object: any[];
 }
 
 const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
-  const objectArray = object === undefined ? [{rowName: "error"}] : object;
+
+  const edit: any = (obj: any) => {
+    return (
+      <EditorDataLine item={obj} ImageClassLevel={"icon-level"} ImgSrc={FolderLevelOne} ImageAlt={"Folder Level 1"} />
+    )
+  }
 
   return (
     <table className={"table-show-content"}>
@@ -24,24 +30,24 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
       </tr>
       <>
         {
-          objectArray.map((objectItem: any, index: number) => {
-            if (objectItem.rowName !== "error") {
+          object.length !== 0 ? object.map((objectItem: any, index: number) => {
+            if (objectItem !== undefined && objectItem.id !== null) {
               if (objectItem.child[0] !== null) {
                 return (
                   <>
                     {/*Level 1*/}
-                    <LineData key={index} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
+                    <LineData key={objectItem.id} IterationItem={objectItem} ImgSrc={FolderLevelOne} ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
                     {
                       objectItem.child.map((childItem: any, indexChild: number) => {
                         if (childItem.child !== null) {
                           return (
                             <>
-                              <LineData key={indexChild} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                              <LineData key={childItem.id} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
                               {
                                 childItem.child.map((FileItem: any, indexFile: number) => {
                                   if (FileItem.child !== null) {
                                     return (
-                                      <LineData key={indexFile} IterationItem={FileItem} ImgSrc={FileImage} ImageClassLevel={"icon-level into-child"} ImageAlt={"File"} />
+                                      <LineData IterationItem={FileItem.id} ImgSrc={FileImage} ImageClassLevel={"icon-level into-child"} ImageAlt={"File"} />
                                     )
                                   }
                                 })
@@ -50,7 +56,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                           )
                         } else {
                           return (
-                            <LineData key={indexChild + 1} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
+                            <LineData key={indexChild} IterationItem={childItem} ImgSrc={FolderLevelTwo} ImageClassLevel={"icon-level into"} ImageAlt={"Folder Level 2"} />
                           )
                         }
                       })
@@ -59,12 +65,12 @@ const ShowContentProject: React.FC<ShowContentType> = ({object}) => {
                 )
               } else {
                 return (
-                  <LineData key={index + 1} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
+                  <LineData key={index} IterationItem={objectItem} ImgSrc={FolderLevelOne}  ImageClassLevel={"icon-level"} ImageAlt={"Folder Level 1"} />
                 )
               }
             }
-          })
-        }
+          }) : edit(object)
+          }
       </>
       </tbody>
     </table>
