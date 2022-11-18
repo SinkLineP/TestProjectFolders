@@ -9,14 +9,17 @@ interface EditorDataLineType {
   ImageAlt: string;
   IDEntity: number;
   setTree: any;
+  tree: any;
 }
 
-const EditorDataLine: React.FC<EditorDataLineType> = ({setTree, IDEntity, item, ImageClassLevel, ImgSrc, ImageAlt}) => {
+const EditorDataLine: React.FC<EditorDataLineType> = ({tree, setTree, IDEntity, item, ImageClassLevel, ImgSrc, ImageAlt}) => {
   const [rowName, setRowName] = useState<string>("");
   const [salary, setSalary] = useState<number>(0);
   const [equipmentCosts, setEquipmentCosts] = useState<number>(0);
   const [overheads, setOverheads] = useState<number>(0);
   const [estimatedProfit, setEstimatedProfit] = useState<number>(0);
+
+  const structure: any[] = [];
 
   const saveValue: any = (rowName: string, salary: number, equipmentCosts: number, overheads: number, estimatedProfit: number, IDEntity: number) => {
     createRowEntityAPI(IDEntity, {
@@ -48,7 +51,8 @@ const EditorDataLine: React.FC<EditorDataLineType> = ({setTree, IDEntity, item, 
           supportCosts,
           total,
         } = r.current;
-        newTree.push({
+        structure.push(tree[0]);
+        structure.push({
           equipmentCosts,
           estimatedProfit,
           id: id,
@@ -64,7 +68,7 @@ const EditorDataLine: React.FC<EditorDataLineType> = ({setTree, IDEntity, item, 
           child: [null],
           level: item.level,
         });
-        setTree(newTree);
+        setTree(structure);
       }
     });
   }

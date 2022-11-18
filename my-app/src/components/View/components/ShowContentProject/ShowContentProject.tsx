@@ -15,7 +15,7 @@ const ShowContentProject: React.FC<ShowContentType> = ({object, IDEntity, setTre
 
   const edit: any = (obj: any, id: number) => {
     return (
-      <EditorDataLine setTree={setTree} IDEntity={id} item={obj} ImageClassLevel={"icon-level"} ImgSrc={FolderLevelOne} ImageAlt={"Folder Level 1"} />
+      <EditorDataLine tree={object} setTree={setTree} IDEntity={id} item={obj} ImageClassLevel={"icon-level"} ImgSrc={FolderLevelOne} ImageAlt={"Folder Level 1"} />
     )
   }
 
@@ -33,7 +33,6 @@ const ShowContentProject: React.FC<ShowContentType> = ({object, IDEntity, setTre
       <>
         {
           object.length !== 0 ? object.map((objectItem: any, index: number) => {
-            console.log(objectItem)
             if (objectItem !== undefined && objectItem.id !== null) {
               if (objectItem.child[0] !== null) {
                 return (
@@ -78,6 +77,9 @@ const ShowContentProject: React.FC<ShowContentType> = ({object, IDEntity, setTre
             }
           }) : edit(object, IDEntity)
           }
+        {
+          edit(object, IDEntity)
+        }
       </>
       </tbody>
     </table>
